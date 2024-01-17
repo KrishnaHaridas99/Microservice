@@ -1,0 +1,41 @@
+#Port Configuration
+server:
+  port: 8090
+#H2 DB Configuration
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  # Putting name for microservice
+  application:
+    name: "loans"
+  # Activating while profile to be called for the config file
+  profiles:
+    active: "prod"
+  #Activating spring cloud config
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  #rabbit Mq configuring  - for spring cloud bus
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+#Spring boot actuator for refreshing the properties file without restart
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

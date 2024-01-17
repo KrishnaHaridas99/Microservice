@@ -1,0 +1,36 @@
+docker run -d --name my-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+
+Once docker up to run rabbit mq
+
+
+Login to docker hub
+
+docker login -u "myusername" -p "mypassword" docker.io
+
+run keycloak on docker
+
+docker run -p 7080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:23.0.3 start-dev
+
+
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+will start zookeeper on 2181 port
+
+open another cmd
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+start kafka on 9092
+
+
+
+Kubernetes UI after starting on docker
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+
+kubectl proxy
+
+
+token for kubernetes
+kubectl -n kubernetes-dashboard create token admin-user
+
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
